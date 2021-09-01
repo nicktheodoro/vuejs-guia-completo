@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Curso VueJS</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ mensagem }}</p>
+      <p>ChangeEvent: {{ curso }}</p>
+      <input v-on:input="handleChange" /><br />
+      <p>BlurEvent: {{ blur }}</p>
+      <input @blur="handleBlur('Meu nome é ', $event)" /><br />   <!-- @ forma abreviada do v-on -->
+      <p>Idade: <span v-text="idade"></span></p>
+      <a v-bind:href="linkDocs">VueJS</a>
+      <p v-once>Nome inteiro: {{ nome }}</p>
+      <p>Nome: {{ getNome() }}</p>
+      <p v-html="htmlPuro"></p>
+      <button v-on:click="handleClick">Clique</button>
+      <p>Botão Clicado {{ cliques }} vezes</p>
+      <p @click="onClick('p', $event)">
+        Curso de VueJS
+        <button @click.stop="onClick('button', $event)">Clique</button>
+      </p>
+      <form>
+        <input type="text">
+        <button type="submit" @click="onSubmit">Enviar sem modificador</button>
+        <button type="submit" @click.prevent="onSubmit" >Enviar com modificador</button>
+      </form>
+      <input @keyup="onKey" placeholder="Qualquer tecla"><br />
+      <input @keyup.enter="onKey" placeholder="Tecla Enter"><br />
+      <input @keyup.enter.esc="onKey" placeholder="Tecla Enter ou Esc"><br />
+      <span>Eventos Botão -></span>
+      <button @click="onClickModificadores">Botão Esquerdo</button>
+      <button @click.middle="onClickModificadores">Botão Meio</button>
+      <button @click.right="onClickModificadores">Botão Direito</button>
+      <button @click.right.prevent="onClickModificadores">Botão Direito Sem Menu de Contexto</button>
+    </div>
+
+    <script type="text/javascript">
+      new Vue({
+        el: "#app",
+        data: {
+          mensagem: "Hello World!!",
+          curso: "",
+          blur: "",
+          idade: 27,
+          linkDocs: "https://vuejs.org/",
+          nome: "Nicolas Theodoro Lopes",
+          htmlPuro: '<span style="color: red">Testando Html Puro</span>',
+          cliques: 0,
+        },
+        methods: {
+          handleChange: function (event) {
+            this.curso = event.target.value;
+          },
+          getNome: function() {
+            this.nome = "Nicolas";
+            return this.nome;
+          },
+          handleClick: function() {
+            this.cliques ++;
+          },
+          handleBlur: function(texto, event) {
+            this.blur = texto + event.target.value;
+          },
+          onClick: function(elementoAlvo, event) {
+            console.log(event.type, ':', elementoAlvo);
+          },
+          onSubmit: function(event) {
+            console.log('Formulário enviado!');
+          },
+          onKey: function(event) {
+            console.log('Tecla ' + event.key + " pressionada!")
+          },
+          onClickModificadores: function(event) {
+            console.log('Botão ' + event.button + ' pressionado!')
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

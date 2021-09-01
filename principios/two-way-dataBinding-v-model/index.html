@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Curso VueJS</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div class="app">
+      <!-- <input :value="nome" @input="nome = $event.target.value"/><br /> -->
+      <input v-model="nome"/>
+      <p>Nome: {{ nome }}</p>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: ".app",
+        data: {
+          nome: "Nicolas",
+        },
+        // methods: {
+        //   alterarNome: function (event) {
+        //     this.nomeCompleto = event.target.value;
+        //   },
+        // },
+      });
+    </script>
+  </body>
+</html>

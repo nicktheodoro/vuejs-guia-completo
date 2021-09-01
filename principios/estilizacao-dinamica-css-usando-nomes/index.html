@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Curso VueJS</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        margin-right: 10px;
+        background-color: red;
+      }
+      .dark {
+        background-color: darkred;
+      }
+      .green {
+        background-color: green;
+      }
+      .blue {
+        background-color: blue;
+      }
+      .circle {
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div
+        class="box"
+        :class="{ dark: aplicarClasse }"
+        @click="aplicarClasse = !aplicarClasse"
+      ></div>
+      <div 
+        class="box"
+        :class="nomeClasse">
+      </div>
+      <input v-model="nomeClasse" placeholder="Nome da classe CSS">
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: ".app",
+        data: {
+          aplicarClasse: false,
+          nomeClasse: '',
+        },
+      });
+    </script>
+  </body>
+</html>
